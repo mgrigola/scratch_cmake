@@ -1,0 +1,48 @@
+#include <iostream>
+#include <fstream>
+#include <deque>
+
+
+using namespace std;
+
+
+std::deque<char> read_text(char* inpTxt)
+{
+    std::deque<char> stack;
+
+    size_t elemNo = 0;
+    char c = inpTxt[0];
+    while ( c != NULL)
+    {
+        if (c != ' ')
+            stack.push_front(c);
+        
+        c = inpTxt[++elemNo];
+    }
+ 
+    return stack;
+}
+
+void print_text(std::deque<char>& stack)
+{
+    size_t elemNo = 0;
+
+    char c = *stack.front();
+    while ( c != NULL)
+    {
+        std::cout << c;
+        stack.pop_front();
+        c = stack.front();
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc < 2)
+        return -1;
+
+    std::deque<char> myStack = read_text(argv[1]);
+
+
+    return 0;
+}
